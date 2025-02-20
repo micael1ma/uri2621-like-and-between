@@ -25,10 +25,20 @@ public class Uri2621Application implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		List<ProductMinProjection> list = repository.serach1();
+		List<ProductMinProjection> list = repository.serach1(10, 20, "P");
 		List<ProductMinDTO> result1 = list.stream().map(x -> new ProductMinDTO(x)).collect(Collectors.toList());
 
+		System.out.println("SQL raiz");
 		for (ProductMinDTO obj : result1) {
+			System.out.println(obj);
+		}
+		System.out.println("\n\n");
+
+
+		List<ProductMinDTO> result2 = repository.serach2(10, 20, "P");
+
+		System.out.println("JPQL");
+		for (ProductMinDTO obj : result2) {
 			System.out.println(obj);
 		}
 	}
